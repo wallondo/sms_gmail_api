@@ -35,7 +35,7 @@ server.post("/body",async(req,resp)=>{
     console.log("entrou e os dados estão a chegar........")
     // console.log(req.body)
     // console.log(req.body.name)
-    return  resp.status(200).send("fine")
+    return  resp.status(200).send(JSON.stringify(req.body))
 })
 server.post("/sms_gmail/:option",async(req,resp)=>{
     server.use(cors())
