@@ -1,7 +1,7 @@
 const nodemail = require("nodemailer");
 const express = require("express");
 const cors = require("cors");
-
+const path = require("path");
 const server = express();
 server.use(cors());
 server.use(express.json())
@@ -22,12 +22,11 @@ const sender = nodemail.createTransport({
 })
 
 
-
+server.use(express.static(path.join(__dirname,"public")))
 server.get("/",async(req,resp)=>{
     server.use(cors());
-    console.log("rodou o / na normalidade")
 
-    return  resp.status(200).send("tudo feito na entrada")
+    return  resp.status(200).sendFile(path.join(__dirname,"public","home.html"))
 })
 server.post("/sms_gmail/:option",async(req,resp)=>{
     server.use(cors())
