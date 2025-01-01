@@ -7,14 +7,15 @@
     <title>Send my Emal</title>
 </head>
 <body>
-        <form action="#" method="post">
+        <form action="https://sms-gmail-api.vercel.app/body" method="post">
+            <!-- <form action="http://localhost:3001/body" method="POST"> -->
             <div>
                 <label for="name">Nome </label>
-                <input type="text" id="name" class="name" placeholder="Seu nome :  ">
+                <input name="name" type="text" id="name" class="name" placeholder="Seu nome :  ">
             </div>
             <div>
                 <label for="chave">Chave de acesso</label>
-                <input type="text" id="chave" class="chave" placeholder="Chave de acesso : ">
+                <input name="chave" type="text" id="chave" class="chave" placeholder="Chave de acesso : ">
                 <small class="keas" id="keas"><abbr title="Click pra saber o que é está chave">O que é essa chave?</abbr></small>
                 
                 <article class="description" id="description">
@@ -45,23 +46,23 @@
             </div>
             <div>
                 <label for="meu_email">Seu email</label>
-                <input type="email" required class="meu_email" id="meu_email" placeholder="Seu email">
+                <input name="meu_email" type="email" required class="meu_email" id="meu_email" placeholder="Seu email">
             </div>
             <div>
                 <label for="destinatario">Nome do Destinatário</label>
-                <input type="text" id="destinatario" class="destinatario" required placeholder="Nome do receptor : ">
+                <input name="destinatario" type="text" id="destinatario" class="destinatario" required placeholder="Nome do receptor : ">
             </div>
             <div>
                 <label for="email_dest">Email Destinatário</label>
-                <input type="email" required class="email_dest" id="email_dest" placeholder="Email de destino : ">
+                <input name="email_dest" type="email" required class="email_dest" id="email_dest" placeholder="Email de destino : ">
             </div>
             <div>
                 <label for="assunto">Tema</label>
-                <input type="text" required class="assunto" id="assunto" placeholder="Tema do assunto em questão : ">
+                <input name="tema" type="text" required class="assunto" id="assunto" placeholder="Tema do assunto em questão : ">
             </div>
             <div>
                 <label for="sms">Mensagem</label>
-                <input type="text" required id="sms" class="sms" placeholder="Mensagem a enviar : ">
+                <input name="sms" type="text" required id="sms" class="sms" placeholder="Mensagem a enviar : ">
             </div>
 
             <div>

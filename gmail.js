@@ -2,10 +2,13 @@ const nodemail = require("nodemailer");
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const body = require("body-parser")
+
 const server = express();
 server.use(cors());
 server.use(express.json())
-
+server.use(body.urlencoded({extended:false}))
+server.use(body.json())
 
 const sender = nodemail.createTransport({
     host:"smtp.gmail.com",
@@ -21,12 +24,18 @@ const sender = nodemail.createTransport({
     socketTimeout: 300000
 })
 
-
 server.use(express.static(path.join(__dirname,"public")))
 server.get("/",async(req,resp)=>{
     server.use(cors());
-
     return  resp.status(200).sendFile(path.join(__dirname,"public","home.html"))
+})
+server.post("/body",async(req,resp)=>{
+    server.use(cors());
+
+    console.log("entrou e os dados estão a chegar........")
+    // console.log(req.body)
+    // console.log(req.body.name)
+    return  resp.status(200).send("fine")
 })
 server.post("/sms_gmail/:option",async(req,resp)=>{
     server.use(cors())
