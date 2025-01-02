@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/style.css">
+    <title>Send my Emal</title>
+</head>
+<body>
+        <form id="form" action="https://sms-gmail-api.vercel.app/body" method="post">
+            <span class="em" id="em"><img src="/e1.jpg" alt=""></span>
+            <!-- <form action="http://localhost:3001/body" method="POST"> -->
+            <div>
+                <label for="name">Nome </label>
+                <input name="name" type="text" id="name" class="name" placeholder="Seu nome :  ">
+            </div>
+            <div>
+                <label for="chave">Chave de acesso</label>
+                <input name="chave" type="text" id="chave" class="chave" placeholder="Chave de acesso : ">
+                <small class="keas" id="keas"><abbr title="Click pra saber o que é está chave">O que é essa chave?</abbr></small>
+                
+                <article class="description" id="description">
+                    <h3>Aqui estão os passos curtos e objetivos para obter a sua senha de aplicativo no Google (chave para APIs de terceiros):</h3>
+                    <br>
+                    (1) <h4>Ative a Verificação em Duas Etapas:</h4>
+                     . Acesse Sua Conta Google. <br>
+                     . Vá em Segurança > Verificação em duas etapas > Ativar. <br>
+                    (2) <h4> Acesse as Senhas de Aplicativos: </h4>
+                     . Na mesma seção de Segurança, encontre Senhas de aplicativos e clique.
+                    (3) <h4> Selecione o Aplicativo e o Dispositivo:</h4>
+                     . Escolha o tipo de aplicativo (ex.: E-mail) e o dispositivo (ex.: Computador).
+                     <br>
+                     . Clique em Gerar.
+                     <br>
+                    (4) <h4> Copie a Senha Gerada:</h4>
+
+                     . O Google exibirá uma senha exclusiva de 16 caracteres. <br>
+                     . Copie e salve a senha em um local seguro. <br>
+                    (5) <h4> Use a Senha no Código:</h4>
+                     . Substitua o campo pass na configuração do Nodemailer ou outro serviço pela senha gerada.
+                        <br>
+                     Pronto! A senha está configurada para uso com o aplicativo específico.
+
+                     <h4>ATT: se não conseguir seguir os passos entre em contacto com o operador : 941137038</h4>
+                
+                </article>
+            </div>
+            <div>
+                <label for="meu_email">Seu email</label>
+                <input name="meu_email" type="email" required class="meu_email" id="meu_email" placeholder="Seu email">
+            </div>
+            <div>
+                <label for="destinatario">Nome do Destinatário</label>
+                <input name="destinatario" type="text" id="destinatario" class="destinatario" required placeholder="Nome do receptor : ">
+            </div>
+            <div>
+                <label for="email_dest">Email Destinatário</label>
+                <input name="email_dest" type="email" required class="email_dest" id="email_dest" placeholder="Email de destino : ">
+            </div>
+            <div>
+                <label for="assunto">Tema</label>
+                <input name="tema" type="text" required class="assunto" id="assunto" placeholder="Tema do assunto em questão : ">
+            </div>
+            <div>
+                <label for="sms">Mensagem</label>
+                <input name="sms" type="text" required id="sms" class="sms" placeholder="Mensagem a enviar : ">
+            </div>
+
+            <div>
+                <input type="submit" name="send_email" id="send_email" class="send_email">
+            </div>
+        </form>
+</body>
+    <script>
+        document.getElementById("form").setAttribute("action","https://sms-gmail-api.vercel.app/body")
+        document.getElementById("keas").addEventListener("click",()=>{
+            document.getElementById("description").classList.toggle("on");
+        })
+
+    </script>
+</html>
