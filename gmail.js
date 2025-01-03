@@ -2,27 +2,14 @@ const nodemail = require("nodemailer");
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const body = require("body-parser")
+const body = require("body-parser");
+const { console } = require("inspector");
 
 const server = express();
 server.use(cors());
 server.use(express.json())
 server.use(body.urlencoded({extended:false}))
 server.use(body.json())
-
-const sender = nodemail.createTransport({
-    host:"smtp.gmail.com",
-    port:"465",
-    secure:true,
-    auth:{
-        user:"wallondolaila@gmail.com",
-        //pass:"laila0101*"
-        pass:"yiag baer tkdl ajco"
-    },
-    connectionTimeout: 300000,  // Ajuste o tempo de conexão
-    greetingTimeout: 300000,    // Ajuste o tempo de saudação
-    socketTimeout: 300000
-})
 
 server.use(express.static(path.join(__dirname,"public")))
 server.get("/",async(req,resp)=>{
@@ -31,14 +18,70 @@ server.get("/",async(req,resp)=>{
 })
 server.post("/body",async(req,resp)=>{
     server.use(cors());
-
+    
     console.log("entrou e os dados estão a chegar........")
+
+    const sender = nodemail.createTransport({
+        host:"smtp.gmail.com",
+        port:"465",
+        secure:true,
+        auth:{
+            // user:"wallondolaila@gmail.com",
+            //pass:"laila0101*"
+            // pass:"yiag baer tkdl ajco"
+            user:req.body.meu_email,
+            // pass:"laila0101*"
+            pass:req.body.chave
+        },
+        connectionTimeout: 300000,  // Ajuste o tempo de conexão
+        greetingTimeout: 300000,    // Ajuste o tempo de saudação
+        socketTimeout: 300000
+    })
+
+    await sender.sendMail({
+        from:req.body.meu_email,
+        to:req.body.email_dest,
+        subject:req.body.tema,
+        html:"<h4>"+req.body.sms+"</h4>", 
+        text:req.body.sms
+    }) 
+    .then((response)=>{
+        console.log(response)
+        console.log("tudo ok e o emal foi enviado")
+        return  resp.status(200).send({sms:"tudo ok no envio",response:JSON.stringify(req.body)})
+    })
+    .catch((err)=>{
+        console.log(err)
+        console.log("sinto muito mais houve um erro")
+        if(err.code=="EAUTH"){
+            return  resp.status(400).send({sms:"Falha de autenticação",error:err})
+        }
+        return  resp.status(400).send({sms:"erro ao enviar",error:err})
+    })
+
     // console.log(req.body)
     // console.log(req.body.name)
-    return  resp.status(200).send(JSON.stringify(req.body))
+
 })
 server.post("/sms_gmail/:option",async(req,resp)=>{
     server.use(cors())
+    const sender = nodemail.createTransport({
+        host:"smtp.gmail.com",
+        port:"465",
+        secure:true,
+        auth:{
+            // user:"wallondolaila@gmail.com",
+            //pass:"laila0101*"
+            // pass:"yiag baer tkdl ajco"
+            user:req.body.meu_email,
+            // pass:"laila0101*"
+            pass:req.body.chave
+        },
+        connectionTimeout: 300000,  // Ajuste o tempo de conexão
+        greetingTimeout: 300000,    // Ajuste o tempo de saudação
+        socketTimeout: 300000
+    })
+    
     console.log(req.params.option) 
     console.log(req.body)
     server.use(cors())
@@ -56,7 +99,7 @@ server.post("/sms_gmail/:option",async(req,resp)=>{
             let email = tos;
             let conteudo = conteudos;
             console.log(cliente)
-            await sender.sendMail({
+            await sender1.sendMail({
                 // de momento tá fixo , depois vai ser dinamico , se aceitarem , mas eu vou faze-lo 
                 //só pra teste e agregação de conhecimento
                 from:"wallondolaila@gmail.com",
@@ -151,5 +194,3 @@ server.post("/sms_gmail/:option",async(req,resp)=>{
 server.listen(3001,()=>{
     console.log("server sms_gmail rodando na porta 3001")
 })
-
-// tetse de deploy 

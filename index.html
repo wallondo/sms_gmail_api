@@ -19,12 +19,106 @@
     background-size: cover;    
 
 }
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+/* prieiro mata tua fome antes de namorar  pra voce não chamar filho alheo de agarrado */
+form{
+    border: 1px solid black;
+    max-height: 650px;
+    width: 450px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+form > div{
+    min-height: 50px;
+    margin: 5px 0px;
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+}
+div label{
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    color: white;
+
+}
+div>input:not([type="submit"]){
+    min-width: 150px;
+    min-height: 20px;
+    border: none;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    outline: none;
+    margin-bottom: 2px;
+    width: 390px;
+    background: transparent;
+    font-size: 15px;
+}
+div>input:not([type="submit"])::placeholder{
+    padding-left: 2px;
+    font-size: 15px;
+    color: whitesmoke;
+}
+div > input[type="submit"]{
+    border: none;
+    height: 35px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: darkblue;
+    color: white;
+    cursor: pointer;
+}
+small{
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline blue;
+    width: 150px;
+}
+.description{
+    width: 0%;
+    height: 0px;
+    overflow-y: auto;
+    text-wrap: wrap;
+    padding: 5px;
+    transition: height 1s;
+    display: none;
+}
+.on{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 200px !important;
+}
+
+.em{
+    width: 40px;
+    height: 40px;
+    align-self: center;
+}
+
+.em img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+
+
     </style>
 </head>
 <body>
-        <form id="form" action="https://sms-gmail-api.vercel.app/body" method="post">
+        <!-- <form id="form" action="https://sms-gmail-api.vercel.app/body" method="post"> -->
+            <form action="http://localhost:3001/body" method="POST">
             <span class="em" id="em"><img src="./public/e1.jpg" alt=""></span>
-            <!-- <form action="http://localhost:3001/body" method="POST"> -->
             <div>
                 <label for="name">Nome </label>
                 <input name="name" type="text" id="name" class="name" placeholder="Seu nome :  ">
