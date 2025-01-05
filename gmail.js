@@ -26,11 +26,9 @@ server.post("/body",async(req,resp)=>{
         port:"465",
         secure:true,
         auth:{
-            // user:"wallondolaila@gmail.com",
-            //pass:"laila0101*"
-            // pass:"yiag baer tkdl ajco"
+
             user:req.body.meu_email,
-            // pass:"laila0101*"
+        
             pass:req.body.chave
         },
         connectionTimeout: 300000,  // Ajuste o tempo de conexão
